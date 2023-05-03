@@ -35,5 +35,5 @@ std::wstring ActionQueue::getSpriteRectPropName() const {
 
 sf::IntRect ActionQueue::getAnimSpriteRect() const {
   int size = 1;
-  sf::IntRect(anim * size * 32, 0, size * 32, size * 32);
+  return sf::IntRect(anim * size * 32, 0, size * 32, size * 32);
 }

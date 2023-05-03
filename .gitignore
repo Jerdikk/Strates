@@ -3,3 +3,5 @@ a.out
 *.d
 doc
 build/*
+*.wsuo
+/.vs

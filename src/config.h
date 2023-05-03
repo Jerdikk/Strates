@@ -6,6 +6,18 @@
 #include <sstream>
 #include <string>
 
+
+#include <stdio.h>
+extern FILE* fp_error;                           // general error file
+extern char error_filename[80];                  // error file name
+
+extern FILE* logfile;
+
+// error functions
+int Open_Error_File(char* filename, FILE* fp_override = NULL);
+int Close_Error_File(void);
+int Write_Error(const char* string, ...);
+
 /**
  * Enables some special behaviors used to ease debugging.
  *

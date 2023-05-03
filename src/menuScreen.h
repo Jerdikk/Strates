@@ -17,11 +17,16 @@ class MenuScreen : public Screen {
      */
     MenuScreen(Application *app);
 
-    ScreenID run();
+    ScreenID run(sf::RenderWindow* window);
+    bool running;
+    ScreenID nextScreen;
 
   private:
     void update();
     void paint(sf::RenderTarget *target);
+
+    // Унаследовано через Screen
+    virtual void onEvent(sf::Event& evt) override;
 };
 
 #endif /* _MENUSCREEN_H_ */

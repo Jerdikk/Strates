@@ -79,8 +79,10 @@ class Application {
 
     sf::Vector2i mapPixelToCoords(const sf::Vector2i &pixel);
 
+    void onEvent(sf::Event& evt);
+
   private:
-    sf::RenderWindow window;
+    sf::RenderWindow *window;
     std::vector<Screen*> screens;
     ScreenID current;
     bool isFullscreen;

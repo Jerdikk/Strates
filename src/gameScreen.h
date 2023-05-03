@@ -18,15 +18,16 @@ class GameScreen : public Screen {
      */
     GameScreen(Application *app);
 
-    ScreenID run();
-
+    ScreenID run(sf::RenderWindow* window);
+    virtual void onEvent(sf::Event& evt) override;
+    
   private:
     bool focus;
     Game *game;
     Hud hud;
     ScreenID nextScreen;
 
-    void onEvent(sf::Event &evt);
+    
     void exit();
     void tick(sf::RenderTarget *target);
     void scroll();
@@ -39,6 +40,9 @@ class GameScreen : public Screen {
     void onMouseButtonPressed(sf::Event &evt);
     void onMouseButtonReleased(sf::Event &evt);
     void onMouseMoved(sf::Event &evt);
+
+    // Унаследовано через Screen
+
 };
 
 #endif /* _GAMESCREEN_H_ */

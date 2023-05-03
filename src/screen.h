@@ -39,8 +39,8 @@ class Screen : public Widget {
      *
      * @return    the ScreenID of the next Screen the Application should run
      */
-    virtual ScreenID run() = 0;
-
+    virtual ScreenID run(sf::RenderWindow* window) = 0;
+    virtual void onEvent(sf::Event& evt)=0;
   protected:
     /**
      * Pointer to the parent Application.

@@ -1,171 +1,177 @@
 #include "widget.h"
 #include "config.h"
 
-Widget::Widget(Widget *parent) {
-  setParent(parent);
+Widget::Widget(Widget* parent) {
+	setParent(parent);
 
-  //TODO: do this in setParent
-  if (parent)
-    parent->add(this);
+	//TODO: do this in setParent
+	if (parent)
+		parent->add(this);
 
-  setSensitive(true);
-  repaint();
+	setSensitive(true);
+	repaint();
 }
 
 Widget::~Widget() {
-  std::vector<Widget*>::iterator c_it;
-  for (c_it = children.begin(); c_it != children.end(); c_it++)
-    delete *c_it;
+	std::vector<Widget*>::iterator c_it;
+	for (c_it = children.begin(); c_it != children.end(); c_it++)
+		delete* c_it;
 
-  std::map<Event::Type, EventListener*>::iterator l_it;
-  for (l_it = eventListeners.begin(); l_it != eventListeners.end(); l_it++) {
-    /* FIXME: delete event callbacks */
-    delete l_it->second;
-  }
+	std::map<Event::Type, EventListener*>::iterator l_it;
+	for (l_it = eventListeners.begin(); l_it != eventListeners.end(); l_it++) {
+		/* FIXME: delete event callbacks */
+		delete l_it->second;
+	}
 }
 
-void Widget::add(Widget *child) {
-  if (!child)
-    return;
+void Widget::add(Widget* child) {
+	if (!child)
+		return;
 
-  child->setWidth(hitBox.width);
-  child->setHeight(hitBox.height);
-  child->setParent(this);
-  children.push_back(child);
+	child->setWidth(hitBox.width);
+	child->setHeight(hitBox.height);
+	child->setParent(this);
+	children.push_back(child);
 }
 
-void Widget::setParent(Widget *parent) {
-  this->parent = parent;
+void Widget::setParent(Widget* parent) {
+	this->parent = parent;
 }
 
 bool Widget::isTopLevel() {
-  return parent == NULL;
+	return parent == NULL;
 }
 
-void Widget::setPosition(const sf::Vector2i &pos) {
-  hitBox.left = pos.x;
-  hitBox.top = pos.y;
+void Widget::setPosition(const sf::Vector2i& pos) {
+	hitBox.left = pos.x;
+	hitBox.top = pos.y;
 }
 
 void Widget::setWidth(int width) {
-  hitBox.width = width;
+	hitBox.width = width;
 }
 
 void Widget::setHeight(int height) {
-  hitBox.height = height;
+	hitBox.height = height;
 }
 
-bool Widget::contains(const sf::Vector2i &point) {
-  return hitBox.contains(point);
+bool Widget::contains(const sf::Vector2i& point) {
+	return hitBox.contains(point);
 }
 
-void Widget::tick(sf::RenderTarget *target) {
-  update();
+void Widget::tick(sf::RenderTarget* target) {
+	update();
 
-  if (needsRepaint) {
-    paint(target);
-    needsRepaint = false;
-  }
+	if (needsRepaint) {
+		paint(target);
+		needsRepaint = false;
+	}
 
-  std::vector<Widget*>::iterator it;
-  for (it = children.begin(); it < children.end(); it++)
-    (*it)->tick(target);
+	std::vector<Widget*>::iterator it;
+	for (it = children.begin(); it < children.end(); it++)
+		(*it)->tick(target);
 }
 
 void Widget::repaint() {
-  needsRepaint = true;
+	needsRepaint = true;
 
-  std::vector<Widget*>::iterator it;
-  for (it = children.begin(); it < children.end(); it++)
-    (*it)->repaint();
+	std::vector<Widget*>::iterator it;
+	for (it = children.begin(); it < children.end(); it++)
+		(*it)->repaint();
 }
 
 void Widget::setSensitive(bool sensitive, bool recursive) {
-  this->sensitive = sensitive;
+	this->sensitive = sensitive;
 
-  if (recursive) {
-    std::vector<Widget*>::iterator it;
-    for (it = children.begin(); it < children.end(); it++)
-      (*it)->setSensitive(sensitive);
-  }
+	if (recursive) {
+		std::vector<Widget*>::iterator it;
+		for (it = children.begin(); it < children.end(); it++)
+			(*it)->setSensitive(sensitive);
+	}
 }
 
 bool Widget::isSensitive() {
-  return sensitive;
+	return sensitive;
 }
 
-void Widget::addEventCallback(Event::Type type, EventCallback *func) {
-  Widget::EventListener *&listener = eventListeners[type];
+void Widget::addEventCallback(Event::Type type, EventCallback* func) {
+	Widget::EventListener*& listener = eventListeners[type];
 
-  if (listener == NULL) {
-    if (!isTopLevel())
-      parent->trackEventType(type);
+	if (listener == NULL) {
+		if (!isTopLevel())
+			parent->trackEventType(type);
 
-    listener = new Widget::EventListener();
-  }
+		listener = new Widget::EventListener();
+	}
 
-  listener->push_back(func);
+	listener->push_back(func);
 }
 
-const Widget::EventListener *Widget::getListener(Event::Type type) {
-  std::map<Event::Type, EventListener*>::iterator listener = eventListeners.find(type);
-  if (listener == eventListeners.end())
-    return NULL;
+const Widget::EventListener* Widget::getListener(Event::Type type) {
+	std::map<Event::Type, EventListener*>::iterator listener = eventListeners.find(type);
+	if (listener == eventListeners.end())
+		return NULL;
 
-  return listener->second;
+	return listener->second;
 }
 
 int Widget::countListeners(Event::Type type) {
-  const EventListener *listener = getListener(type);
-  if (listener)
-    return listener->size();
+	const EventListener* listener = getListener(type);
+	if (listener)
+		return listener->size();
 
-  return 0;
+	return 0;
 }
 
 void Widget::trackEventType(Event::Type type) {
-  if (eventTypesTracked[type]++ == 0 && !isTopLevel())
-    parent->trackEventType(type);
+	if (eventTypesTracked[type]++ == 0 && !isTopLevel())
+		parent->trackEventType(type);
 }
 
 void Widget::untrackEventType(Event::Type type) {
-  if (--eventTypesTracked[type] == 0)
-    parent->untrackEventType(type);
+	if (--eventTypesTracked[type] == 0)
+		parent->untrackEventType(type);
 }
 
 bool Widget::isEventTypeTracked(Event::Type type) {
-  return eventTypesTracked.find(type)->second > 0
-    || countListeners(type) != 0;
+	if (eventTypesTracked.size() <= 0)
+		return false;
+	else
+	{
+		return eventTypesTracked.find(type)->second > 0
+			|| countListeners(type) != 0;
+
+	}
 }
 
-bool Widget::shouldPropagate(Widget *child, const Event &evt) {
-  return child->isSensitive()
-    && child->isEventTypeTracked(evt.getType())
-    && evt.shouldPropagate(child);
+bool Widget::shouldPropagate(Widget* child, const Event& evt) {
+	return child->isSensitive()
+		&& child->isEventTypeTracked(evt.getType())
+		&& evt.shouldPropagate(child);
 }
 
-void Widget::propagateEvent(Event &evt) {
-  std::vector<Widget*>::iterator it;
-  for (it = children.begin(); it != children.end(); it++) {
-    if (shouldPropagate(*it, evt))
-      (*it)->dispatchEvent(evt);
-  }
+void Widget::propagateEvent(Event& evt) {
+	std::vector<Widget*>::iterator it;
+	for (it = children.begin(); it != children.end(); it++) {
+		if (shouldPropagate(*it, evt))
+			(*it)->dispatchEvent(evt);
+	}
 }
 
-void Widget::dispatchEvent(Event &evt) {
-  if (!isEventTypeTracked(evt.getType()))
-    return;
+void Widget::dispatchEvent(Event& evt) {
+	if (!isEventTypeTracked(evt.getType()))
+		return;
 
-  propagateEvent(evt);
+	propagateEvent(evt);
 
-  if (evt.isConsumed())
-    return;
+	if (evt.isConsumed())
+		return;
 
-  const EventListener *listener = getListener(evt.getType());
-  if (listener == NULL)
-    return;
+	const EventListener* listener = getListener(evt.getType());
+	if (listener == NULL)
+		return;
 
-  EventListener::const_iterator it;
-  for (it = listener->begin(); it != listener->end(); it++)
-    (**it)(evt);
+	EventListener::const_iterator it;
+	for (it = listener->begin(); it != listener->end(); it++)
+		(**it)(evt);
 }
