@@ -1,0 +1,111 @@
+﻿  application.cpp
+  fow.cpp
+  techTree.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2541,23): warning C4244: аргумент: преобразование "const wchar_t" в "const _Elem", возможна потеря данных
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2552): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2552): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2532): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2532): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Users\user1\source\repos\Jerdikk\Strates\src\techTree.cpp(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)"
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\user1\source\repos\Jerdikk\Strates\src\techTree.cpp(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)"
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  building.cpp
+  game.cpp
+  map.cpp
+  tileMap.cpp
+  config.cpp
+  gameScreen.cpp
+  menuScreen.cpp
+  unit.cpp
+  cursor.cpp
+  hud.cpp
+  mouseEvent.cpp
+  utils.cpp
+  entity.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2541,23): warning C4244: аргумент: преобразование "const wchar_t" в "const _Elem", возможна потеря данных
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2552): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2552): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2532): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2532): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<const wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)"
+          with
+          [
+              _Iter=const wchar_t *
+          ]
+C:\Users\user1\source\repos\Jerdikk\Strates\src\entity.cpp(60): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)"
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\user1\source\repos\Jerdikk\Strates\src\entity.cpp(60): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)"
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  hudPanel.cpp
+  player.cpp
+  widget.cpp
+  event.cpp
+  Создание кода...
+  Компиляция...
+  imageManager.cpp
+  screen.cpp
+  ai.cpp
+  action.cpp
+  actionWait.cpp
+  actionQueue.cpp
+  actionMove.cpp
+  playerColor.cpp
+  spriteManager.cpp
+  Создание кода...
+  Core.vcxproj -> C:\Users\user1\source\repos\Jerdikk\Strates\Debug\Core.lib
