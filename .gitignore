@@ -7,3 +7,7 @@ build/*
 /.vs
 /CMakeFiles
 /out/build/x64-Debug
+/Core.dir
+/Json.dir
+/strates.dir
+/x64
