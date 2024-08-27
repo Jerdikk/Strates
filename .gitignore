@@ -6,3 +6,4 @@ build/*
 *.wsuo
 /.vs
 /CMakeFiles
+/out/build/x64-Debug
