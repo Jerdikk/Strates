@@ -101,6 +101,8 @@ void Widget::addEventCallback(Event::Type type, EventCallback* func) {
 		if (!isTopLevel())
 			parent->trackEventType(type);
 
+		trackEventType(type);
+
 		listener = new Widget::EventListener();
 	}
 

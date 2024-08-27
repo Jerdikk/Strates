@@ -11,16 +11,14 @@ GameScreen::GameScreen(Application* app) :
 	focus = true;
 	game = new Game(app, this);
 	AI::getInstance().init(game);
-	log("GAME");
-	nextScreen = SCREEN_GAME;
 }
 
 ScreenID GameScreen::run(sf::RenderWindow* window)
 {
-	//if (nextScreen<-2)
-		
+	if (nextScreen<-2)
+		nextScreen = SCREEN_GAME;
 
-	
+	//log("GAME");
 
 	//sf::RenderWindow* window = app->getWindow();
 
@@ -141,16 +139,13 @@ void GameScreen::onKeyReleased(sf::Event& evt) {
 	switch (evt.key.code) {
 	case sf::Keyboard::Escape:
 	case sf::Keyboard::Q:
-		log("Exit");
 		exit();
 		break;
 	case sf::Keyboard::F11:
 		nextScreen = SCREEN_MENU;
-		log("SCREEN_MENU");
 		break;
 	case sf::Keyboard::F10:
 		app->toggleFullscreen();
-		log("fullScreen");
 		break;
 	default:
 		break;
@@ -271,14 +266,15 @@ void GameScreen::onEvent(sf::Event& evt)
 		break;
 	case sf::Event::MouseButtonPressed:
 		log("MouseButtonPressed");
-		onMouseButtonPressed(evt);
+		onMouseButtonPressed(evt);		
 		break;
 	case sf::Event::MouseButtonReleased:
 		log("MouseButtonReleased");
-		onMouseButtonReleased(evt);
+		onMouseButtonReleased(evt);		
 		break;
 	case sf::Event::MouseMoved:
 		onMouseMoved(evt);
+		game->onMouseMoved((const Event&)evt);
 		break;
 	default:
 		break;

@@ -35,6 +35,9 @@ Game::Game(Application *app, Widget *parent) : Widget(parent) {
 bool Game::onMousePressed(const Event &evt) {
   log("Click!");
 
+  sf::Vector2i coords0 = app->getCursor()->getPosition();
+  sf::Vector2f coords1 = app->getCursor()->getViewPosition();
+
   const MouseEvent &e = (const MouseEvent&) evt;
   const sf::Vector2i &pos = e.getPosition();
   sf::Vector2i coords = app->mapPixelToCoords(pos);
@@ -44,6 +47,7 @@ bool Game::onMousePressed(const Event &evt) {
   }
   
   selectionAction(evt);
+
   if( e.getButton() == MouseEvent::BUTTON1) {
     selectionEnabled = true;
     selectionStart = coords;
